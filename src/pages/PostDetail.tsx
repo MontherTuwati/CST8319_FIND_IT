@@ -40,6 +40,11 @@ export default function PostDetail() {
   const [loadingClaims, setLoadingClaims] = useState(false);
   const [processingClaimId, setProcessingClaimId] = useState<string | null>(null);
 
+  // Report / flag (viewer)
+  const [showReportForm, setShowReportForm] = useState(false);
+  const [reportReason, setReportReason] = useState("");
+  const [submittingReport, setSubmittingReport] = useState(false);
+
   const isOwner = user && post && user.uid === post.createdBy;
   const canClaim =
     user &&
@@ -214,6 +219,30 @@ export default function PostDetail() {
     }
   }
 
+  async function handleSubmitReport() {
+    if (!id || !user || !reportReason.trim()) {
+      toast("error", "Please provide a reason for reporting.");
+      return;
+    }
+    setSubmittingReport(true);
+    try {
+      await addDoc(collection(db, "flags"), {
+        postId: id,
+        flaggedBy: user.uid,
+        reason: reportReason.trim(),
+        createdAt: serverTimestamp(),
+      });
+      toast("success", "Report submitted. An admin will review it.");
+      setReportReason("");
+      setShowReportForm(false);
+    } catch (err) {
+      console.error(err);
+      toast("error", "Failed to submit report.");
+    } finally {
+      setSubmittingReport(false);
+    }
+  }
+
   if (loading) {
     return (
       <div className="flex justify-center py-20">
@@ -330,6 +359,50 @@ export default function PostDetail() {
                 Cancel
               </Button>
             </div>
+          </div>
+        )}
+
+        {/* --- Report / Flag (viewer, non-owner) --- */}
+        {user && post && !isOwner && (
+          <div className="mt-6">
+            {!showReportForm ? (
+              <button
+                onClick={() => setShowReportForm(true)}
+                className="text-sm text-gray-400 hover:text-danger cursor-pointer"
+              >
+                Report this post
+              </button>
+            ) : (
+              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 space-y-3">
+                <h3 className="text-sm font-semibold text-gray-700">Report Post</h3>
+                <Textarea
+                  id="reportReason"
+                  placeholder="Why are you reporting this post?"
+                  value={reportReason}
+                  onChange={(e) => setReportReason(e.target.value)}
+                />
+                <div className="flex gap-2">
+                  <Button
+                    size="sm"
+                    variant="danger"
+                    onClick={handleSubmitReport}
+                    disabled={submittingReport}
+                  >
+                    {submittingReport ? "Sending..." : "Submit Report"}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setShowReportForm(false);
+                      setReportReason("");
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
