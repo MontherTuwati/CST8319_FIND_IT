@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, query, where, orderBy, limit, getDocs } from "firebase/firestore";
+import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { Spinner } from "../components/ui";
 import PostCard from "../components/PostCard";
@@ -14,7 +14,6 @@ export default function Home() {
       try {
         const q = query(
           collection(db, "posts"),
-          where("status", "in", ["open", "in_review", "resolved"]),
           orderBy("createdAt", "desc"),
           limit(20),
         );
