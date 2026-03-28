@@ -9,7 +9,7 @@ import {
   type QueryConstraint,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { Spinner, Select, Input } from "../components/ui";
+import { Spinner, FilterSelect, Input } from "../components/ui";
 import PostCard from "../components/PostCard";
 import type { Post } from "../types";
 
@@ -86,20 +86,21 @@ export default function Home() {
       </div>
 
       <div className="mb-6 grid gap-3 sm:grid-cols-3">
-        <Select
+        <FilterSelect
           id="typeFilter"
           options={TYPE_OPTIONS}
           value={typeFilter}
-          onChange={(e) => setTypeFilter(e.target.value)}
+          onChange={setTypeFilter}
         />
-        <Select
+        <FilterSelect
           id="categoryFilter"
           options={CATEGORY_OPTIONS}
           value={categoryFilter}
-          onChange={(e) => setCategoryFilter(e.target.value)}
+          onChange={setCategoryFilter}
         />
         <Input
           id="keyword"
+          variant="toolbar"
           placeholder="Search by keyword..."
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
