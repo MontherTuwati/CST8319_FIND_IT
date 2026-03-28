@@ -82,12 +82,13 @@ export default function FilterSelect({ id, options, value, onChange }: Props) {
         aria-controls={listboxId}
         onClick={() => setOpen((v) => !v)}
         className={[
-          "flex w-full min-h-[2.75rem] items-center justify-between gap-2 rounded-xl border border-slate-200/90",
+          "flex min-h-[2.75rem] w-full items-center justify-between gap-2 rounded-xl border border-slate-200/90",
           "bg-linear-to-b from-white to-slate-50/95 px-4 py-2.5 text-left text-sm font-medium text-slate-800",
           "shadow-sm shadow-slate-900/5 transition-[border-color,box-shadow,transform] duration-200",
           "hover:border-primary/40 hover:shadow-md hover:shadow-slate-900/10",
           "focus:border-primary focus:shadow-md focus:shadow-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/25",
-          open && "border-primary/50 shadow-md ring-1 ring-primary/15",
+          "dark:border-slate-600 dark:from-slate-900 dark:to-slate-900/95 dark:text-slate-100 dark:shadow-slate-950/40",
+          open && "border-primary/50 shadow-md ring-1 ring-primary/15 dark:ring-primary/25",
         ].join(" ")}
       >
         <span className="truncate">{selected?.label ?? "—"}</span>
@@ -101,6 +102,7 @@ export default function FilterSelect({ id, options, value, onChange }: Props) {
           className={[
             "absolute left-0 right-0 z-50 mt-1 max-h-64 overflow-auto rounded-xl border border-slate-200/90",
             "bg-white py-1 shadow-xl shadow-slate-900/15 ring-1 ring-slate-900/5",
+            "dark:border-slate-600 dark:bg-slate-900 dark:ring-slate-800",
           ].join(" ")}
         >
           {options.map((opt) => {
@@ -119,8 +121,8 @@ export default function FilterSelect({ id, options, value, onChange }: Props) {
                   className={[
                     "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
                     isSelected
-                      ? "bg-primary/10 font-medium text-primary"
-                      : "text-slate-700 hover:bg-slate-100",
+                      ? "bg-primary/10 font-medium text-primary dark:bg-primary/20"
+                      : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800",
                   ].join(" ")}
                 >
                   {isSelected ? <Check /> : <span className="w-4 shrink-0" aria-hidden />}
