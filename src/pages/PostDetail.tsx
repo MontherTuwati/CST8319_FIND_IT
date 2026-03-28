@@ -254,8 +254,8 @@ export default function PostDetail() {
   if (!post) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-20 text-center">
-        <h2 className="text-2xl font-bold text-gray-900">Post not found</h2>
-        <p className="mt-2 text-gray-500">It may have been deleted or the link is incorrect.</p>
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-100">Post not found</h2>
+        <p className="mt-2 text-gray-500 dark:text-slate-400">It may have been deleted or the link is incorrect.</p>
         <Button className="mt-6" onClick={() => navigate("/")}>
           Back to Home
         </Button>
@@ -284,7 +284,7 @@ export default function PostDetail() {
         <img
           src={post.photoURL}
           alt={post.title}
-          className="w-full max-h-[28rem] rounded-xl object-cover border border-gray-200"
+          className="w-full max-h-[28rem] rounded-xl border border-gray-200 object-cover dark:border-slate-600"
         />
       )}
 
@@ -292,30 +292,30 @@ export default function PostDetail() {
         <div className="flex flex-wrap items-center gap-2 mb-3">
           <Badge variant={post.type} />
           <Badge variant={post.status} />
-          <span className="text-xs text-gray-400">{post.category}</span>
+          <span className="text-xs text-gray-400 dark:text-slate-500">{post.category}</span>
         </div>
 
-        <h1 className="text-2xl font-bold text-gray-900">{post.title}</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-100">{post.title}</h1>
 
-        <p className="mt-4 text-gray-700 whitespace-pre-wrap leading-relaxed">
+        <p className="mt-4 whitespace-pre-wrap leading-relaxed text-gray-700 dark:text-slate-300">
           {post.description}
         </p>
 
         <dl className="mt-6 grid grid-cols-2 gap-4 text-sm">
           <div>
-            <dt className="font-medium text-gray-500">Location</dt>
-            <dd className="mt-1 text-gray-900">{post.locationText}</dd>
+            <dt className="font-medium text-gray-500 dark:text-slate-400">Location</dt>
+            <dd className="mt-1 text-gray-900 dark:text-slate-100">{post.locationText}</dd>
           </div>
           <div>
-            <dt className="font-medium text-gray-500">Date lost / found</dt>
-            <dd className="mt-1 text-gray-900">{post.eventDate || "—"}</dd>
+            <dt className="font-medium text-gray-500 dark:text-slate-400">Date lost / found</dt>
+            <dd className="mt-1 text-gray-900 dark:text-slate-100">{post.eventDate || "—"}</dd>
           </div>
           <div>
-            <dt className="font-medium text-gray-500">Posted</dt>
-            <dd className="mt-1 text-gray-900">{formattedDate}</dd>
+            <dt className="font-medium text-gray-500 dark:text-slate-400">Posted</dt>
+            <dd className="mt-1 text-gray-900 dark:text-slate-100">{formattedDate}</dd>
           </div>
           <div>
-            <dt className="font-medium text-gray-500">Status</dt>
+            <dt className="font-medium text-gray-500 dark:text-slate-400">Status</dt>
             <dd className="mt-1">
               <Badge variant={post.status} />
             </dd>
@@ -324,20 +324,20 @@ export default function PostDetail() {
 
         {/* --- Claim this item (viewer) --- */}
         {canClaim && !showClaimForm && (
-          <div className="mt-8 border-t border-gray-200 pt-6">
+          <div className="mt-8 border-t border-gray-200 pt-6 dark:border-slate-700">
             <Button onClick={() => setShowClaimForm(true)}>Claim this item</Button>
           </div>
         )}
 
         {alreadyClaimed && !isOwner && (
-          <p className="mt-6 text-sm text-gray-500 italic">
+          <p className="mt-6 text-sm italic text-gray-500 dark:text-slate-400">
             You have already submitted a claim for this item.
           </p>
         )}
 
         {showClaimForm && (
-          <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 p-4 space-y-3">
-            <h3 className="text-sm font-semibold text-gray-700">Submit a Claim</h3>
+          <div className="mt-6 space-y-3 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-slate-600 dark:bg-slate-800/50">
+            <h3 className="text-sm font-semibold text-gray-700 dark:text-slate-200">Submit a Claim</h3>
             <Textarea
               id="claimMessage"
               placeholder="Describe how you can identify this item (colour, marks, contents, etc.)..."
@@ -368,13 +368,13 @@ export default function PostDetail() {
             {!showReportForm ? (
               <button
                 onClick={() => setShowReportForm(true)}
-                className="text-sm text-gray-400 hover:text-danger cursor-pointer"
+                className="cursor-pointer text-sm text-gray-400 hover:text-danger dark:text-slate-500"
               >
                 Report this post
               </button>
             ) : (
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 space-y-3">
-                <h3 className="text-sm font-semibold text-gray-700">Report Post</h3>
+              <div className="space-y-3 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-slate-600 dark:bg-slate-800/50">
+                <h3 className="text-sm font-semibold text-gray-700 dark:text-slate-200">Report Post</h3>
                 <Textarea
                   id="reportReason"
                   placeholder="Why are you reporting this post?"
@@ -408,7 +408,7 @@ export default function PostDetail() {
 
         {/* --- Owner actions --- */}
         {isOwner && (
-          <div className="mt-8 border-t border-gray-200 pt-6 space-y-6">
+          <div className="mt-8 space-y-6 border-t border-gray-200 pt-6 dark:border-slate-700">
             <div className="flex gap-3">
               <Link to={`/posts/${post.id}/edit`}>
                 <Button variant="secondary">Edit Post</Button>
@@ -420,28 +420,28 @@ export default function PostDetail() {
 
             {/* Claims management */}
             <div>
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-slate-100">
                 Claims {claims.length > 0 && `(${claims.length})`}
               </h2>
 
               {loadingClaims ? (
                 <Spinner className="mt-3" />
               ) : claims.length === 0 ? (
-                <p className="mt-2 text-sm text-gray-400">No claims yet.</p>
+                <p className="mt-2 text-sm text-gray-400 dark:text-slate-500">No claims yet.</p>
               ) : (
                 <ul className="mt-3 space-y-3">
                   {claims.map((claim) => (
                     <li
                       key={claim.id}
-                      className="rounded-lg border border-gray-200 bg-white p-4"
+                      className="rounded-lg border border-gray-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900"
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <Badge variant={claim.status} />
-                        <span className="text-xs text-gray-400">
+                        <span className="text-xs text-gray-400 dark:text-slate-500">
                           {claim.createdAt?.toDate?.().toLocaleDateString() ?? ""}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-700 whitespace-pre-wrap">
+                      <p className="whitespace-pre-wrap text-sm text-gray-700 dark:text-slate-300">
                         {claim.message}
                       </p>
                       {claim.status === "pending" && (

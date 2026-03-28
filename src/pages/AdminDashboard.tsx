@@ -115,19 +115,19 @@ export default function AdminDashboard() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
-      <p className="mt-1 text-sm text-gray-500">Review flagged posts and moderate content.</p>
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-100">Admin Dashboard</h1>
+      <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">Review flagged posts and moderate content.</p>
 
       {flags.length === 0 ? (
-        <div className="mt-10 rounded-xl border border-dashed border-gray-300 py-16 text-center">
-          <p className="text-gray-400 text-lg">No flagged posts.</p>
+        <div className="mt-10 rounded-xl border border-dashed border-gray-300 py-16 text-center dark:border-slate-600">
+          <p className="text-lg text-gray-400 dark:text-slate-500">No flagged posts.</p>
         </div>
       ) : (
         <ul className="mt-6 space-y-4">
           {flags.map((flag) => (
             <li
               key={flag.id}
-              className="rounded-lg border border-gray-200 bg-white p-5"
+              className="rounded-lg border border-gray-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900"
             >
               <div className="flex flex-wrap items-center gap-2 mb-2">
                 <Link
@@ -139,12 +139,12 @@ export default function AdminDashboard() {
                 <Badge variant={flag.postStatus} />
               </div>
 
-              <p className="text-sm text-gray-700">
-                <span className="font-medium text-gray-500">Reason: </span>
+              <p className="text-sm text-gray-700 dark:text-slate-300">
+                <span className="font-medium text-gray-500 dark:text-slate-400">Reason: </span>
                 {flag.reason}
               </p>
 
-              <p className="mt-1 text-xs text-gray-400">
+              <p className="mt-1 text-xs text-gray-400 dark:text-slate-500">
                 Reported {flag.createdAt?.toDate?.().toLocaleDateString() ?? ""}
               </p>
 

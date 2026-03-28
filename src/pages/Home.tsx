@@ -79,8 +79,8 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Campus Lost &amp; Found</h1>
-        <p className="mt-2 text-gray-500">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-slate-100">Campus Lost &amp; Found</h1>
+        <p className="mt-2 text-gray-500 dark:text-slate-400">
           Browse recent listings or create a new post to report a lost or found item.
         </p>
       </div>
@@ -112,9 +112,9 @@ export default function Home() {
           <Spinner size="lg" />
         </div>
       ) : filteredPosts.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-gray-300 py-20 text-center">
-          <p className="text-gray-400 text-lg">No posts match your filters.</p>
-          <p className="text-gray-400 text-sm mt-1">
+        <div className="rounded-xl border border-dashed border-gray-300 py-20 text-center dark:border-slate-600">
+          <p className="text-lg text-gray-400 dark:text-slate-500">No posts match your filters.</p>
+          <p className="mt-1 text-sm text-gray-400 dark:text-slate-500">
             Try adjusting the filters or create a new listing!
           </p>
         </div>

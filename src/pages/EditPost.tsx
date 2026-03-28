@@ -140,12 +140,12 @@ export default function EditPost() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-gray-900">Edit Listing</h1>
-      <p className="mt-1 text-sm text-gray-500">Update the details of your post.</p>
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-100">Edit Listing</h1>
+      <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">Update the details of your post.</p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Type</label>
+          <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-slate-300">Type</label>
           <div className="flex gap-4">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -156,7 +156,7 @@ export default function EditPost() {
                 onChange={() => setType("lost")}
                 className="accent-primary"
               />
-              <span className="text-sm">Lost</span>
+              <span className="text-sm text-gray-800 dark:text-slate-200">Lost</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -167,7 +167,7 @@ export default function EditPost() {
                 onChange={() => setType("found")}
                 className="accent-primary"
               />
-              <span className="text-sm">Found</span>
+              <span className="text-sm text-gray-800 dark:text-slate-200">Found</span>
             </label>
           </div>
         </div>
@@ -214,20 +214,20 @@ export default function EditPost() {
         />
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-slate-300">
             Replace photo (optional, max 5 MB)
           </label>
           <input
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-            className="block w-full text-sm text-gray-500 file:mr-4 file:rounded-lg file:border-0 file:bg-primary file:px-4 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-primary-dark file:cursor-pointer"
+            className="block w-full text-sm text-gray-500 file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-primary file:px-4 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-primary-dark dark:text-slate-400"
           />
           {previewSrc && (
             <img
               src={previewSrc}
               alt="Preview"
-              className="mt-3 h-48 w-full rounded-lg object-cover border border-gray-200"
+              className="mt-3 h-48 w-full rounded-lg border border-gray-200 object-cover dark:border-slate-600"
             />
           )}
         </div>

@@ -77,16 +77,16 @@ export default function MyActivity() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-gray-900">My Activity</h1>
-      <p className="mt-1 text-sm text-gray-500">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-100">My Activity</h1>
+      <p className="mt-1 text-sm text-gray-500 dark:text-slate-400">
         {totalPending > 0
           ? `You have ${totalPending} pending claim${totalPending > 1 ? "s" : ""} to review.`
           : "No pending claims right now."}
       </p>
 
       {posts.length === 0 ? (
-        <div className="mt-10 rounded-xl border border-dashed border-gray-300 py-16 text-center">
-          <p className="text-gray-400 text-lg">You haven't created any posts yet.</p>
+        <div className="mt-10 rounded-xl border border-dashed border-gray-300 py-16 text-center dark:border-slate-600">
+          <p className="text-lg text-gray-400 dark:text-slate-500">You haven't created any posts yet.</p>
         </div>
       ) : (
         <ul className="mt-6 space-y-4">
@@ -94,13 +94,13 @@ export default function MyActivity() {
             <li key={post.id}>
               <Link
                 to={`/posts/${post.id}`}
-                className="block rounded-lg border border-gray-200 bg-white p-4 transition hover:shadow-md"
+                className="block rounded-lg border border-gray-200 bg-white p-4 transition hover:shadow-md dark:border-slate-700 dark:bg-slate-900"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 min-w-0">
                     <Badge variant={post.type} />
                     <Badge variant={post.status} />
-                    <h3 className="font-semibold text-gray-900 truncate">
+                    <h3 className="truncate font-semibold text-gray-900 dark:text-slate-100">
                       {post.title}
                     </h3>
                   </div>
@@ -110,7 +110,7 @@ export default function MyActivity() {
                     </span>
                   )}
                 </div>
-                <div className="mt-2 flex items-center gap-3 text-xs text-gray-400">
+                <div className="mt-2 flex items-center gap-3 text-xs text-gray-400 dark:text-slate-500">
                   <span>{post.category}</span>
                   <span>·</span>
                   <span>{post.locationText}</span>
