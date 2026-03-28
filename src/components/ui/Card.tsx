@@ -10,10 +10,12 @@ interface Props {
 }
 
 const variantStyles: Record<Variant, string> = {
-  default: "bg-white border border-gray-200 rounded-xl shadow-sm",
-  elevated: "bg-white border-l-4 border-l-primary border border-gray-200 rounded-lg shadow-md",
+  default:
+    "rounded-xl border border-gray-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900",
+  elevated:
+    "rounded-lg border border-gray-200 border-l-4 border-l-primary bg-white shadow-md dark:border-slate-700 dark:bg-slate-900",
   interactive:
-    "bg-white border border-gray-200 rounded-xl shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:border-primary transition-all duration-200 cursor-pointer",
+    "cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary hover:shadow-md dark:border-slate-700 dark:bg-slate-900 dark:hover:border-primary",
 };
 
 export default function Card({ variant = "default", className = "", children, onClick }: Props) {
